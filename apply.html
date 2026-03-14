@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IR'FinancePlus - Smart Loan Solutions</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">IR'FinancePlus</div>
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./loans.html">Loans</a></li>
+                <li><a href="./calculator.html">Calculator</a></li>
+                <li><a href="./apply.html">Apply Now!</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+<section id="contact">
+    <h2>Apply for a Loan</h2>
+    <p>Fill out the form below and our team will contact you shortly</p>
+    
+    <div class="contact-form">
+        <form id="loan-application" action="#" method="post">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="loan-interest">Loan Interest</label>
+                <select id="loan-interest" name="loan-interest" required>
+                    <option value="">Select Loan Type</option>
+                    <option value="mortgage">Mortgage Loan</option>
+                    <option value="auto">Auto Loan</option>
+                    <option value="business">Business Loan</option>
+                    <option value="education">Education Loan</option>
+                    <option value="personal">Personal Loan</option>
+                    <option value="Gold">Gold Loan Loan</option>
+                    <option value="Emergency">Speed Interest Loan</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="loan-amount-request">Loan Amount ($)</label>
+                <input type="number" id="loan-amount-request" name="loan-amount-request" min="1000" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Additional Information</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Submit Application</button>
+        </form>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            <p>&copy; 2025 FinancePlus. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="./script.js" type="module">
+                // Import Firebase modules
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+    
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-7Cjq5NGHIZkC_aNTOxjTVLtIQb-NXVI",
+            authDomain: "oaara-fy-project-2025.firebaseapp.com",
+            databaseURL: "https://oaara-fy-project-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "oaara-fy-project-2025",
+            storageBucket: "oaara-fy-project-2025.appspot.com",
+            messagingSenderId: "991601225781",
+            appId: "1:991601225781:web:08d6c8b07ae6e1a86e417c",
+            measurementId: "G-CQL83CNEJ2"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+    
+        // Form submission handler
+        document.getElementById("loan-application").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const loanInterest = document.getElementById("loan-interest").value.trim();
+            const loanAmount = document.getElementById("loan-amount-request").value.trim();
+            const message = document.getElementById("message").value.trim();
+    
+            // Validate fields
+            if (!name || !email || !phone || !loanInterest || !loanAmount) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+    
+            // Reference to Firebase Database
+            const loanApplicationsRef = ref(database, "loan-applications");
+            const newApplicationRef = push(loanApplicationsRef); // Create a unique entry
+    
+            try {
+                await set(newApplicationRef, {
+                    name,
+                    email,
+                    phone,
+                    loanInterest,
+                    loanAmount,
+                    message,
+                    timestamp: new Date().toISOString()
+                });
+    
+                alert("Application submitted successfully!");
+                document.getElementById("loan-application").reset(); // Clear form
+            } catch (error) {
+                console.error("Error submitting application: ", error);
+                alert("Failed to submit application. Please try again.");
+            }
+        });
+    </script>    
+</body>
+</html>

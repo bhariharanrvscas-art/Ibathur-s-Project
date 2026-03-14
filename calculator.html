@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IR'FinancePlus - Smart Loan Solutions</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">IR'FinancePlus</div>
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./loans.html">Loans</a></li>
+                <li><a href="./calculator.html">Calculator</a></li>
+                <li><a href="./apply.html">Apply Now!</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Calculator Section -->
+    <section id="calculator">
+        <h2>Loan Calculator</h2>
+        <p>Estimate your monthly payments and total costs</p>
+        
+        <div class="calculator">
+            <div class="form-group">
+                <label for="loan-amount">Loan Amount ($)</label>
+                <input type="number" id="loan-amount" min="1000" value="25000">
+            </div>
+            
+            <div class="form-group">
+                <label for="loan-term">Loan Term (years)</label>
+                <input type="number" id="loan-term" min="1" max="30" value="5">
+            </div>
+            
+            <div class="form-group">
+                <label for="interest-rate">Interest Rate (%)</label>
+                <input type="number" id="interest-rate" min="0.1" step="0.1" value="5.5">
+            </div>
+            
+            <div class="form-group">
+                <label for="loan-type">Loan Type</label>
+                <select id="loan-type">
+                    <option value="personal">Personal Loan</option>
+                    <option value="mortgage">Mortgage</option>
+                    <option value="auto">Auto Loan</option>
+                    <option value="business">Business Loan</option>
+                    <option value="education">Education Loan</option>
+                </select>
+            </div>
+            
+            <button type="button" id="calculate-btn" class="btn">Calculate</button>
+            
+            <div class="calculator-result" id="result">
+                <h3>Your Loan Summary</h3>
+                <div class="result-item">
+                    <span>Monthly Payment:</span>
+                    <span id="monthly-payment">$0</span>
+                </div>
+                <div class="result-item">
+                    <span>Total Payment:</span>
+                    <span id="total-payment">$0</span>
+                </div>
+                <div class="result-item">
+                    <span>Total Interest:</span>
+                    <span id="total-interest">$0</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            <p>&copy; 2025 FinancePlus. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="./script.js"  type="module"></script>
+</body>
+</html>
